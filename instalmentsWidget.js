@@ -49,6 +49,26 @@ const WIDGET_STYLES = `
   }
 `;
 
+const sendTracking = (data) => {
+  fetch(EVENTS_URL, {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .catch((error) => console.error('Tracking is not sent'))
+}
+
+const getDataTracking = (context, type, selectedInstalment = undefined ) => {
+  return {
+    context,
+    type,
+    selectedInstalment,
+  }
+}
+
 const getCreditAgreements = (amount) => {
   return fetch(`${CREDIT_AGREEMENTS_URL}?totalWithTax=${amount}`).then(
     (response) => response.json()
@@ -126,6 +146,10 @@ const closeModal = (event) => {
   event.preventDefault();
   const modalMoreInfo = document.getElementsByClassName('modal_more_info')[0];
   modalMoreInfo.remove();
+
+  sendTracking(
+    getDataTracking('checkoutWidget', 'closeModal')
+  );
 };
 
 const openModal = (event) => {
@@ -140,7 +164,9 @@ const openModal = (event) => {
   )[0];
   closeMoreInfo.addEventListener('click', closeModal, false);
 
-  //TODO: event: open more info modal
+  sendTracking(
+    getDataTracking('checkoutWidget', 'openModal')
+  );
 };
 
 const setSelectedByDefault = () => {
@@ -157,8 +183,12 @@ const selectOnChange = (event) => {
   element
     .querySelector(`option[value="${value}"]`)
     .setAttribute('selected', true);
-  console.log(event);
+    
+    sendTracking(
+      getDataTracking('checkoutWidget', 'simulatorInstalmentChanged', value)
+    );
 };
+
 const addEventListenerToElements = (parent) => {
   const moreInfo = parent.getElementsByClassName('more_info')[0];
   const instalmentSelect = parent.querySelector(`#${SELECT_ID}`);
@@ -180,11 +210,16 @@ const renderWidget = (externalElementId, amount) => {
       external_element.innerHTML = widget;
       setSelectedByDefault();
       addEventListenerToElements(external_element);
-      //TODO: event: load widget available
+      
+      sendTracking(
+        getDataTracking('checkoutWidget', 'onLoad')
+      );
     });
   } catch {
-    //TODO: event: widget not available
     console.error('Widget not available');
+    sendTracking(
+      getDataTracking('checkoutWidget', 'loadError')
+    );
   }
 };
 
