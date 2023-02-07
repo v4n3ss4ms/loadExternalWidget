@@ -1,5 +1,6 @@
-const CREDIT_AGREEMENTS_URL = "http://localhost:8080/credit_agreements";
-const EVENTS_URL = "http://localhost:8080/events";
+const CREDIT_AGREEMENTS_URL = 'http://localhost:8080/credit_agreements';
+const EVENTS_URL = 'http://localhost:8080/events';
+const SELECT_ID = 'instalment_select';
 const WIDGET_STYLES = `
   .instalments-widget {
     padding: 10px;
@@ -94,7 +95,7 @@ const getInstalmentOptions = (data) => {
     return (acc += getInstalmentOption(option));
   }, "");
   const LAYOUT = `
-      <select name="instalments" id="instalment_select" class="instalment-select">
+      <select name="instalments" id="${SELECT_ID}" class="instalment-select">
         ${options}
       </select>
     `;
@@ -106,7 +107,7 @@ const getWidget = (data) => {
   const LAYOUT = `
     <div class="instalments-widget">
       <div class="selection--header">
-        <label for="instalment_select">Págalo en</label>
+        <label for="${SELECT_ID}">Págalo en</label>
         <a href="#" class="more_info">más info</a>
       </div>
       ${instalmentOptions}
@@ -116,7 +117,7 @@ const getWidget = (data) => {
 };
 
 const addWidgetStyles = ((styleString) => {
-  const widgetStyles = document.createElement("style");
+  const widgetStyles = document.createElement('style');
   document.head.append(widgetStyles);
   return (styleString) => (widgetStyles.textContent = styleString);
 })();
@@ -125,22 +126,45 @@ const closeModal = (event) => {
   event.preventDefault();
   const modalMoreInfo = document.getElementsByClassName('modal_more_info')[0];
   modalMoreInfo.remove();
-}
+};
 
 const openModal = (event) => {
   event.preventDefault();
-  const modal = getModal(33)
+  const fee = document
+    .querySelector(`#${SELECT_ID} option[selected="true"]`)
+    .getAttribute('data-fee');
+  const modal = getModal(fee);
   event.target.insertAdjacentHTML('afterend', modal);
-  const closeMoreInfo = document.getElementsByClassName('modal_more_info_close')[0];
-  closeMoreInfo.addEventListener("click", closeModal, false);
+  const closeMoreInfo = document.getElementsByClassName(
+    'modal_more_info_close'
+  )[0];
+  closeMoreInfo.addEventListener('click', closeModal, false);
 
   //TODO: event: open more info modal
-}
+};
 
+const setSelectedByDefault = () => {
+  const firstOption = document.querySelector(`#${SELECT_ID} option`);
+  firstOption.setAttribute('selected', true);
+};
+
+const selectOnChange = (event) => {
+  const element = event.target;
+  const value = event.target.value;
+  element
+    .querySelector('option[selected="true"]')
+    .setAttribute('selected', false);
+  element
+    .querySelector(`option[value="${value}"]`)
+    .setAttribute('selected', true);
+  console.log(event);
+};
 const addEventListenerToElements = (parent) => {
   const moreInfo = parent.getElementsByClassName('more_info')[0];
-  moreInfo.addEventListener("click", openModal, false);
-}
+  const instalmentSelect = parent.querySelector(`#${SELECT_ID}`);
+  moreInfo.addEventListener('click', openModal, false);
+  instalmentSelect.addEventListener('change', selectOnChange, false);
+};
 
 /**
  * Utility function to render the widget.
@@ -154,15 +178,17 @@ const renderWidget = (externalElementId, amount) => {
       const widget = getWidget(creditAgreementsData);
       addWidgetStyles(WIDGET_STYLES);
       external_element.innerHTML = widget;
+      setSelectedByDefault();
       addEventListenerToElements(external_element);
       //TODO: event: load widget available
     });
   } catch {
     //TODO: event: widget not available
-    console.error("Widget not available");
+    console.error('Widget not available');
   }
 };
 
-const renderInstalmentsWidget = () => window.renderInstalmentsWidget = renderWidget;
+const renderInstalmentsWidget = () =>
+  (window.renderInstalmentsWidget = renderWidget);
 
 export default renderInstalmentsWidget();

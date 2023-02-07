@@ -13,7 +13,7 @@ $(document).ready(function() {
     // Example: prepare your data and reload the widget
     var data_price_attr = $(this).attr("data-price");
     if (data_price_attr) {
-      var amount = parseInt(data_price_attr.replace('€','').trim());
+      var amount = parseFloat(data_price_attr.replace('€','').trim().replace(',','.'));
       window.renderInstalmentsWidget('available_instalments', amount);
     }
   });
@@ -42,7 +42,7 @@ $(document).ready(function() {
   // Example: initial render
   var data_price_attr = $('.attr2.active').attr("data-price")
   if (data_price_attr) {
-    var amount = parseInt(data_price_attr.replace('€','').trim());
+    var amount = parseFloat(data_price_attr.replace('€','').trim().replace(',','.'));
     window.renderInstalmentsWidget('available_instalments', amount);
   }
 });

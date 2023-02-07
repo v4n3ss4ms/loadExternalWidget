@@ -1,6 +1,6 @@
 # Instalments widget module
 
-TBD
+Widget ready for distribution
 
 ## Setup
 
@@ -12,9 +12,12 @@ TBD
     * element_id: string
     * amount: number
 
-## Example
+## How to run the project - example
 
-* Run SeQura mocked API environment (`api/README.md`)
+### Run SeQura mocked API environment
+* Read `api/README.md` for more information
+
+### Run the example
 * `npm install`
 * `npm start`
 * `live-server` server should be running on port 4000
@@ -23,4 +26,5 @@ TBD
 
 * In order to prevent styles clashing, CSS could be generated with the parent item as initial selector.
 * A bunch of harcoded JS classes should be constants
+* Split the code in different modules
 
