@@ -8,11 +8,13 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --port=4000 --open=./example/product-page.html"
+    "start": "live-server --port=4000 --open=./example/product-page.html",
+    "build": "uglifyjs instalmentsWidget.js -o dist/instalmentsWidget.min.js -c -m"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "uglify-js": "^3.17.4"
   }
 }
