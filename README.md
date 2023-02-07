@@ -10,7 +10,7 @@ Widget ready for distribution
 * `renderInstalmentsWidget(element_id, amount)` params:
 
     * element_id: string
-    * amount: number
+    * amount: float
 
 ## How to run the project - example
 
