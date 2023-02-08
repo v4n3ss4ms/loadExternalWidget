@@ -2,10 +2,30 @@
 
 Widget ready for distribution
 
+## Development - Run the example
+
+### Step 1: Run mocked API environment
+* Read `api/README.md` for more information
+
+### Step 2: Run the development example
+* `npm install`
+* `npm start`
+* `live-server` server should be running on port 4000
+
 ## Build distribution file 
 * `npm run build`
 
-## How to use - Setup
+## Tests
+
+### Cypress
+
+### Step 1: Run mocked API environment
+* Read `api/README.md` for more information
+
+### Step 2: Run tests
+* `npm run cypress`
+
+## How to use the widget - Setup
 
 * Place an insertion point in your HTML with an unique ID (i.e. `<div id="my-element-id"></div>` ).
 * Load the module together the rest of libraries, before your js (`<script type="module" src="../dist/instalmentsWidget.min.js"></script>`)
@@ -14,16 +34,6 @@ Widget ready for distribution
 
     * element_id: string
     * amount: float
-
-## How to run the example
-
-### Run mocked API environment
-* Read `api/README.md` for more information
-
-### Run the example
-* `npm install`
-* `npm start`
-* `live-server` server should be running on port 4000
 
 ## Nice to have
 
