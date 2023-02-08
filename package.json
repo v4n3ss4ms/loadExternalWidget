@@ -7,7 +7,6 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "cypress": "cypress open",
     "start": "live-server --port=4000 --open=./example/product-page.html",
     "build": "uglifyjs instalmentsWidget.js -o dist/instalmentsWidget.min.js -c -m"

@@ -1,6 +1,16 @@
 # Instalments widget module
 
-Widget ready for distribution
+## Table of contents
+- [Development - Run the example](#development-run-the-example)
+  * [Step 1: Run mocked API environment](#step-1-run-mocked-api-environment)
+  * [Step 2: Run the development example](#step-2-run-the-development-example)
+- [Build distribution file ](#build-distribution-file)
+- [Tests](#tests)
+  * [Cypress](#cypress)
+  * [Step 1: Run mocked API environment](#step-1-run-mocked-api-environment-1)
+  * [Step 2: Run tests](#step-2-run-tests)
+- [How to use the widget - Setup](#how-to-use-the-widget-setup)
+- [Nice to have](#nice-to-have)
 
 ## Development - Run the example
 
@@ -32,8 +42,8 @@ Widget ready for distribution
 * Once you calculate the shopping basket or product price and when they change, please execute `window.renderInstalmentsWidget("my-element-id", 1500);`
 * `renderInstalmentsWidget(element_id, amount)` params:
 
-    * element_id: string
-    * amount: float
+    * element_id: `string`
+    * amount: `float`
 
 ## Nice to have
 
