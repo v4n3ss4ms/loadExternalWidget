@@ -27,6 +27,8 @@ const WIDGET_STYLES = `
   .mode-info--steps li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
   }
   .mode-info--wrapper {
     position: fixed;
@@ -45,7 +47,8 @@ const WIDGET_STYLES = `
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
+    max-width: 600px;
   }
 `;
 
@@ -86,15 +89,15 @@ const getModal = (fee) => {
         <ol class="mode-info--steps">
           <li>
             <div>Eliges "Fracciona tu pago" al realizar tu pedido y pagas sólo la primera cuota.</div>
-            <div><img src=""></div>
+            <div><img src="../assets/icons/payment.png" width="75px"></div>
           </li>
           <li>
             <div>Recibes tu pedido</div>
-            <div><img src=""></div>
+            <div><img src="../assets/icons/shipment.png" width="75px"></div>
           </li>
           <li>
             <div>El resto de pagos se cargarán automáticamente en tu tarjeta.</div>
-            <div><img src=""></div>
+            <div><img src="../assets/icons/card.png" width="75px"></div>
           </li>
         </ol>
         <p>¡Así de simple!</p>

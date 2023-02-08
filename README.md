@@ -27,8 +27,8 @@ Widget ready for distribution
 
 ## Nice to have
 
-* CSS should be loaded from a CDN
-* I don't have the CDN option for CSS, so in order to prevent styles clashing, CSS could be generated with the parent item as initial selector.
+* CSS should be loaded from a CDN. I don't have the CDN option for CSS, so in order to prevent styles clashing, CSS could be generated with the parent item as initial selector.
+* Popup images should be loaded from a CDN. I've placed them locally just for the example. I cut them from the pdf file, so they don't have the best quality, sorry.
 * A bunch of harcoded JS classes should be constants.
 * Split the code in different modules.
 
